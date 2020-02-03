@@ -14,14 +14,6 @@ void eachElementCompletion(int index, char* source) {
 }
 
 int main(int argc, const char * argv[]) {
-//    char source[1000] = "{\"x\":\"y\",\"z\":{\"a\":\"b\",\"c\":\"d\"}}";
-//    char source[1000] = "[{\"a\":\"b\"},{\"c\":\"d\"},{\"e\":\"f\"}]";
-//    char destination[1000] = {};
-////    getObjectValueOfKey(source, "z", destination);
-////    getStringValueOfKey(destination, "b", destination);
-////    int i = getStringValueOfArray(source, -1, destination);
-//    getObjectValueOfArray(source, 0, destination);
-//    printf("%s\n", destination);
     
     printf("TESTING JSONiter - The best JSON Parser\n\n");
     
