@@ -8,10 +8,27 @@
 
 #include "jsoniter.h"
 
+#define MAX 10000
+
 void splitStringWithDoubleQuotes(char str[1000000], char newString[1000][1000], int *countOfWords) {
     int j = 0, count = 0;
     for(int i = 0; i <= strlen(str); i++) {
         if (str[i] == '\0' || str[i] == '\"' || str[i] == '\n') {
+            newString[count][j] = '\0';
+            count += 1;
+            j = 0;
+        } else {
+            newString[count][j] = str[i];
+            j++;
+        }
+    }
+    *countOfWords = count;
+}
+
+void splitStringWithOnlyCommas(char str[1000000], char newString[1000][1000], int *countOfWords) {
+    int j = 0, count = 0;
+    for(int i = 0; i <= strlen(str); i++) {
+        if (str[i] == '\0' || str[i] == ',' || str[i] == '\n') {
             newString[count][j] = '\0';
             count += 1;
             j = 0;
@@ -304,4 +321,14 @@ void getArrayValueOfArray(char *source, int index, char *destination) {
         commaAfterEndIndex = (int)(strlen(source)) - 1;
     }
     findSubstring(destination, source, commaBeforeStartIndex + 1, commaAfterEndIndex - commaBeforeStartIndex - 1);
+}
+
+void loopOverArrayForStrings(char *source, void (*eachElementCompletion)(int, char *)) {
+    int c = -1;
+    char newString[1000][1000] = {};
+    findSubstring(source, source, 1, (int)(strlen(source)) - 2);
+    splitStringWithOnlyCommas(source, newString, &c);
+    for (int i = 0; i < c; i++) {
+        eachElementCompletion(i, newString[i]);
+    }
 }

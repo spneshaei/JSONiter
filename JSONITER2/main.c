@@ -9,6 +9,10 @@
 #include <stdio.h>
 #include "jsoniter.h"
 
+void eachElementCompletion(int index, char* source) {
+    printf("Index: %d\nMember: %s\n", index, source);
+}
+
 int main(int argc, const char * argv[]) {
 //    char source[1000] = "{\"x\":\"y\",\"z\":{\"a\":\"b\",\"c\":\"d\"}}";
 //    char source[1000] = "[{\"a\":\"b\"},{\"c\":\"d\"},{\"e\":\"f\"}]";
@@ -38,11 +42,16 @@ int main(int argc, const char * argv[]) {
     getStringValueOfKey(destination2, "content", destination2);
     printf("1 index's content (should be How are you?) == %s\n", destination2);
     
-    printf("Now testing an empty array. Should print -1 now: ");
+    printf("\nNow testing an empty array. Should print -1 now: ");
     char newSource[1000] = "{\"mykey\":[]}";
     getArrayValueOfKey(newSource, "mykey", destination);
     int nn = getStringValueOfArray(destination, 0, destination);
-    printf("%d\n", nn);
+    printf("%d\n\n", nn);
+    
+    printf("Now introducing LoopOver, a new feature of JSONiter!\n");
+    
+    char newSource2[1000] = "[\"y\",\"o\",\"s\",\"a\"]";
+    loopOverArrayForStrings(newSource2, eachElementCompletion);
     
     return 0;
 }

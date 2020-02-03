@@ -34,4 +34,6 @@ int getRawValueOfArray(char *source, int index, char *destination);
 void getObjectValueOfArray(char *source, int index, char *destination);
 void getArrayValueOfArray(char *source, int index, char *destination);
 
+void loopOverArrayForStrings(char *source, void (*eachElementCompletion)(int, char *));
+
 #endif /* jsoniter_h */
